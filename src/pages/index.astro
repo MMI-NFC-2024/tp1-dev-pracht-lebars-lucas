@@ -10,5 +10,15 @@ import Penguins from "../assets/penguins.json";
 ---
 
 <Layout>
-	<PlotFigure />
+	<div>
+      <h1>Penguins</h1>
+      <PlotFigure
+        options={{
+          marks: [
+            Plot.dot(Penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+          ]
+        }}
+      />
+    </div>
+	
 </Layout>
