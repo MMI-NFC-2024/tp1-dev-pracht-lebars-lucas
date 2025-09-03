@@ -1,19 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Data Visualization Dashboard</title>
+		<meta name="description" content="Beautiful data visualizations with interactive charts">
 	</head>
-	<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+	<body class="antialiased">
 		<slot />
 	</body>
 </html>
-
-<style>
-	@tailwind base;
-	@tailwind components;
-	@tailwind utilities;
-</style>

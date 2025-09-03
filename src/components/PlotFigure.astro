@@ -1,51 +1,49 @@
 ---
 import * as Plot from "@observablehq/plot";
 import { JSDOM } from "jsdom";
+
 const { options } = Astro.props;
 
-const plot = Plot.plot({ ...options, document: new JSDOM("").window.document });
+const plot = Plot.plot({ 
+	...options, 
+	document: new JSDOM("").window.document 
+});
 ---
 
-<div class="w-full flex justify-center items-center" set:html={plot.outerHTML} />
+<div class="w-full overflow-hidden">
+	<div class="chart-container" set:html={plot.outerHTML}></div>
+</div>
 
 <style>
-	div :global(svg) {
-		@apply max-w-full h-auto rounded-lg shadow-sm;
-		background: #1f2937 !important;
+	.chart-container :global(svg) {
+		width: 100%;
+		height: auto;
+		background: transparent !important;
+		border-radius: 12px;
 	}
 
-	/* Force all text in SVG to be white */
-	div :global(svg text) {
-		fill: white !important;
-		color: white !important;
+	/* Style all text elements to be light colored */
+	.chart-container :global(svg text) {
+		fill: #e2e8f0 !important;
+		font-family: system-ui, -apple-system, sans-serif;
+		font-size: 12px;
 	}
 
-	/* Force legend text to be white */
-	div :global(svg .legend text) {
-		fill: white !important;
+	/* Style axis lines */
+	.chart-container :global(svg .domain) {
+		stroke: #64748b;
+		stroke-width: 1;
 	}
 
-	/* Force axis labels to be white */
-	div :global(svg .x-axis text),
-	div :global(svg .y-axis text) {
-		fill: white !important;
+	.chart-container :global(svg .tick line) {
+		stroke: #475569;
+		stroke-width: 1;
 	}
 
-	@media (prefers-color-scheme: dark) {
-		div :global(svg) {
-			@apply bg-gray-800;
-		}
-		
-		div :global(svg text) {
-			fill: white !important;
-		}
-		
-		div :global(svg .domain) {
-			stroke: #64748b;
-		}
-		
-		div :global(svg .tick line) {
-			stroke: #475569;
+	/* Responsive adjustments */
+	@media (max-width: 768px) {
+		.chart-container :global(svg text) {
+			font-size: 10px;
 		}
 	}
 </style>

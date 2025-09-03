@@ -19,88 +19,108 @@ function mandelbrot(x:number, y:number) {
 ---
 
 <Layout>
-	<main class="container mx-auto px-4 py-8 max-w-4xl">
-		<!-- Hero Section -->
-		<header class="text-center mb-12">
-			<h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text text-transparent mb-4">
-				Data Visualization Dashboard
-			</h1>
-			<p class="text-white text-lg">
-				Exploring datasets with beautiful charts
-			</p>
-		</header>
+	<div class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+		<div class="container mx-auto px-6 py-12">
+			<!-- Hero Section -->
+			<header class="text-center mb-16">
+				<h1 class="text-5xl md:text-6xl font-bold text-white mb-6">
+					Data Visualization
+					<span class="block text-transparent bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text">
+						Dashboard
+					</span>
+				</h1>
+				<p class="text-slate-300 text-xl max-w-2xl mx-auto leading-relaxed">
+					Explore beautiful data visualizations with interactive charts and insights
+				</p>
+			</header>
 
-		<!-- Charts Section -->
-		<section class="space-y-8">
-			<!-- Penguins Chart -->
-			<div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
-				<div class="mb-6">
-					<h2 class="text-2xl font-semibold text-white mb-2">
-						🐧 Penguins Dataset
-					</h2>
-					<p class="text-white">
-						Culmen length vs depth analysis
-					</p>
+			<!-- Charts Grid -->
+			<div class="space-y-12 max-w-5xl mx-auto">
+				<!-- Penguins Chart -->
+				<div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 shadow-2xl">
+					<div class="mb-8">
+						<div class="flex items-center gap-3 mb-4">
+							<span class="text-4xl">🐧</span>
+							<h2 class="text-3xl font-bold text-white">
+								Penguins Dataset
+							</h2>
+						</div>
+						<p class="text-slate-300 text-lg">
+							Analysis of culmen length versus depth across different penguin species
+						</p>
+					</div>
+					<div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+						<PlotFigure
+							options={{
+								marks: [
+									Plot.dot(Penguins, {
+										x: "culmen_length_mm", 
+										y: "culmen_depth_mm",
+										fill: "species",
+										stroke: "white",
+										strokeWidth: 1.5,
+										r: 5,
+										opacity: 0.8
+									})
+								],
+								marginLeft: 70,
+								marginBottom: 50,
+								marginTop: 30,
+								marginRight: 120,
+								color: {
+									legend: true
+								}
+							}}
+						/>
+					</div>
 				</div>
-				<div class="bg-gray-900 rounded-xl p-4">
-					<PlotFigure
-						options={{
-							marks: [
-								Plot.dot(Penguins, {
-									x: "culmen_length_mm", 
-									y: "culmen_depth_mm",
-									fill: "species",
-									stroke: "white",
-									strokeWidth: 1,
-									r: 4
-								})
-							],
-							marginLeft: 60,
-							marginBottom: 40,
-							color: {legend: true},
-							style: {
-								background: "#1f2937",
-								color: "white"
-							},
-							axis: {
-								color: "white"
-							}
-						}}
-					/>
+
+				<!-- Diamonds Chart -->
+				<div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-8 shadow-2xl">
+					<div class="mb-8">
+						<div class="flex items-center gap-3 mb-4">
+							<span class="text-4xl">💎</span>
+							<h2 class="text-3xl font-bold text-white">
+								Diamonds Dataset
+							</h2>
+						</div>
+						<p class="text-slate-300 text-lg">
+							Correlation between diamond price and depth across different cuts
+						</p>
+					</div>
+					<div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
+						<PlotFigure
+							options={{
+								marks: [
+									Plot.dot(Diamonds, {
+										x: "price", 
+										y: "depth",
+										fill: "cut",
+										stroke: "white",
+										strokeWidth: 0.8,
+										r: 3,
+										opacity: 0.6
+									})
+								],
+								marginLeft: 70,
+								marginBottom: 50,
+								marginTop: 30,
+								marginRight: 120,
+								color: {
+									legend: true
+								}
+							}}
+						/>
+					</div>
 				</div>
 			</div>
 
-			<!-- Diamonds Chart -->
-			<div class="bg-gray-800 rounded-2xl p-6 shadow-lg">
-				<div class="mb-6">
-					<h2 class="text-2xl font-semibold text-white mb-2">
-						💎 Diamonds Dataset
-					</h2>
-					<p class="text-white">
-						Price vs depth correlation
-					</p>
-				</div>
-				<div class="bg-gray-900 rounded-xl p-4">
-					<PlotFigure
-						options={{
-							marks: [
-								Plot.dot(Diamonds, {
-									x: "price", 
-									y: "depth",
-									fill: "cut",
-									stroke: "white",
-									strokeWidth: 0.5,
-									r: 2,
-									opacity: 0.7
-								})
-							],
-							marginLeft: 60,
-							marginBottom: 40,
-							color: {legend: true}
-						}}
-					/>
-				</div>
-			</div>
-		</section>
-	</main>
+			<!-- Footer -->
+			<footer class="text-center mt-16">
+				<p class="text-slate-400">
+					Built with Astro, Tailwind CSS, and Observable Plot
+				</p>
+			</footer>
+		</div>
+	</div>
 </Layout>
