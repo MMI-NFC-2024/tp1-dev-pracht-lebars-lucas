@@ -6,9 +6,46 @@ const { options } = Astro.props;
 const plot = Plot.plot({ ...options, document: new JSDOM("").window.document });
 ---
 
-<div set:html={plot.outerHTML} />
+<div class="w-full flex justify-center items-center" set:html={plot.outerHTML} />
 
+<style>
+	div :global(svg) {
+		@apply max-w-full h-auto rounded-lg shadow-sm;
+		background: #1f2937 !important;
+	}
 
-    
-  
+	/* Force all text in SVG to be white */
+	div :global(svg text) {
+		fill: white !important;
+		color: white !important;
+	}
 
+	/* Force legend text to be white */
+	div :global(svg .legend text) {
+		fill: white !important;
+	}
+
+	/* Force axis labels to be white */
+	div :global(svg .x-axis text),
+	div :global(svg .y-axis text) {
+		fill: white !important;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		div :global(svg) {
+			@apply bg-gray-800;
+		}
+		
+		div :global(svg text) {
+			fill: white !important;
+		}
+		
+		div :global(svg .domain) {
+			stroke: #64748b;
+		}
+		
+		div :global(svg .tick line) {
+			stroke: #475569;
+		}
+	}
+</style>
